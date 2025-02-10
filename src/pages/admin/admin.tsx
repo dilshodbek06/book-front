@@ -35,37 +35,37 @@ const sidebarLinks = [
   },
 ];
 
-const adminRoutes = [
-  { to: "/admin/users", icon: <FaUsers className="size-6" />, label: "Users" },
-  {
-    to: "/admin/books",
-    icon: <GiBookshelf className="size-6" />,
-    label: "Books",
-  },
-];
+// const adminRoutes = [
+//   { to: "/admin/users", icon: <FaUsers className="size-6" />, label: "Users" },
+//   {
+//     to: "/admin/books",
+//     icon: <GiBookshelf className="size-6" />,
+//     label: "Books",
+//   },
+// ];
 
-const operatorRoutes = [
-  {
-    to: "/admin/orders-new",
-    icon: <MdOutlineCreateNewFolder className="size-6" />,
-    label: "New Orders",
-  },
-  {
-    to: "/admin/orders-inprogress",
-    icon: <GrInProgress className="size-6" />,
-    label: "Inprogress Orders",
-  },
-  {
-    to: "/admin/orders-completed",
-    icon: <GrCompliance className="size-6" />,
-    label: "Completed Orders",
-  },
-  {
-    to: "/admin/orders-canceled",
-    icon: <ImCancelCircle className="size-6" />,
-    label: "Canceled Orders",
-  },
-];
+// const operatorRoutes = [
+//   {
+//     to: "/admin/orders-new",
+//     icon: <MdOutlineCreateNewFolder className="size-6" />,
+//     label: "New Orders",
+//   },
+//   {
+//     to: "/admin/orders-inprogress",
+//     icon: <GrInProgress className="size-6" />,
+//     label: "Inprogress Orders",
+//   },
+//   {
+//     to: "/admin/orders-completed",
+//     icon: <GrCompliance className="size-6" />,
+//     label: "Completed Orders",
+//   },
+//   {
+//     to: "/admin/orders-canceled",
+//     icon: <ImCancelCircle className="size-6" />,
+//     label: "Canceled Orders",
+//   },
+// ];
 
 const Admin = () => {
   const location = useLocation();
