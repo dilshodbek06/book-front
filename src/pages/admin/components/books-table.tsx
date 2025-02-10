@@ -103,7 +103,7 @@ const BooksTable = () => {
               </td>
               <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                 <img
-                  src={`http://localhost:3000/${book.imageUrl}`}
+                  src={`https://book-front-git-main-dilshodbek06s-projects.vercel.app/${book.imageUrl}`}
                   alt="book cover"
                   className="w-12 h-12 rounded"
                 />

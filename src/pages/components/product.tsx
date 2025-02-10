@@ -10,7 +10,7 @@ const Product = ({ book }: { book: Book }) => {
     >
       <div className=" max-w-[165px]  flex justify-center items-center">
         <img
-          src={`http://localhost:3000/${book.imageUrl}`}
+          src={`https://book-front-git-main-dilshodbek06s-projects.vercel.app/${book.imageUrl}`}
           alt="book image"
           className="w-full"
         />

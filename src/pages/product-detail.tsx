@@ -51,7 +51,7 @@ const ProductDetail = () => {
           <div className="mt-3 min-h-[500px] ">
             <div>
               <img
-                src={`http://localhost:3000/${currentProduct?.imageUrl}`}
+                src={`https://book-front-git-main-dilshodbek06s-projects.vercel.app/${currentProduct?.imageUrl}`}
                 alt={currentProduct?.name}
                 className="mx-auto"
               />
