@@ -26,7 +26,7 @@ const CartItem = ({
         <div className="h-full flex items-center gap-x-2">
           <img
             className="rounded max-w-[70px] h-[104px]"
-            src={`https://book-front-git-main-dilshodbek06s-projects.vercel.app/${imageUrl}`}
+            src={`https://book-backend-git-main-dilshodbek06s-projects.vercel.app/${imageUrl}`}
             alt={name}
           />
         </div>
