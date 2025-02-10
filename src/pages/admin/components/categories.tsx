@@ -81,6 +81,7 @@ const Categories = () => {
         )}
       </div>
       <div className="mt-2 flex flex-wrap items-center gap-2 px-3 py-1">
+        {loading && <div>Loading...</div>}
         {categories.map((item, ind) => (
           <div
             key={ind}

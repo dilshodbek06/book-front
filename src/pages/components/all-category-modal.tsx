@@ -1,5 +1,8 @@
 import { Drawer } from "vaul";
 import { useStore } from "../../store/useStore";
+import { useEffect, useState } from "react";
+import { Category } from "../../types";
+import { Request } from "../../helpers/Request";
 
 interface AllCategoryModalProps {
   open: boolean;
@@ -13,6 +16,22 @@ const AllCategoryModal = ({ handleClose, open }: AllCategoryModalProps) => {
     setSelectedCategory(category);
     handleClose();
   };
+
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const { data } = await Request<Category[]>("/category", "GET");
+      setCategories(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Drawer.Root onClose={handleClose} open={open} onOpenChange={handleClose}>
@@ -30,19 +49,17 @@ const AllCategoryModal = ({ handleClose, open }: AllCategoryModalProps) => {
               />
               <div className=" min-h-[300px]">
                 <p className="text-lg font-medium text-center">Kategoriyalar</p>
-                <div className="mt-2 py-3 px-1 grid grid-cols-4 gap-3 max-h-[300px] overflow-y-auto">
-                  {["Diniy", "Diniy", "Diniy", "Diniy", "Diniy", "Diniy"].map(
-                    (category, index) => (
-                      <button
-                        onClick={() => handleCategorySelect(category)}
-                        key={index}
-                        className="text-gray-600 group bg-gray-100 focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-[10px] text-sm px-[18px] py-[10px] text-center relative overflow-hidden hover:opacity-80 flex-shrink-0"
-                      >
-                        <div className="absolute top-[-31px] left-[-31px] w-[50px] h-[50px] rounded-3xl bg-gray-50 bg-opacity-50"></div>
-                        {category}
-                      </button>
-                    )
-                  )}
+                <div className="mt-2 py-3 px-1 grid grid-cols-2 gap-3 max-h-[300px] overflow-y-auto">
+                  {categories?.map((category, index) => (
+                    <button
+                      onClick={() => handleCategorySelect(category.id)}
+                      key={index}
+                      className="text-gray-600 group bg-gray-100 focus:ring-1 focus:outline-none focus:ring-blue-300 font-medium rounded-[10px] text-sm px-[18px] py-[10px] text-center relative overflow-hidden hover:opacity-80 flex-shrink-0"
+                    >
+                      <div className="absolute top-[-31px] left-[-31px] w-[50px] h-[50px] rounded-3xl bg-gray-50 bg-opacity-50"></div>
+                      {category.name}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>

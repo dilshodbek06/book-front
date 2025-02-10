@@ -12,6 +12,7 @@ const Categories: React.FC = () => {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -21,11 +22,14 @@ const Categories: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
+      setLoading(true);
       const res = await Request<Category[]>("/category", "GET");
 
       setCategories(res.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -93,6 +97,14 @@ const Categories: React.FC = () => {
           ></div>
           Hammasi
         </button>
+        {loading &&
+          [1, 1, 1].map((_, ind) => (
+            <button
+              key={ind}
+              className="bg-gray-200 rounded-[10px] w-[120px] h-[40px] animate-pulse"
+              disabled
+            ></button>
+          ))}
         {categories.map((category, index) => (
           <button
             onClick={() => handleCategorySelect(category.id)}

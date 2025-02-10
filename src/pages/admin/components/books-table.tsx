@@ -1,13 +1,14 @@
 import { AiOutlineClose } from "react-icons/ai";
-import Pagination from "../../../components/pagination";
-import { GoPencil } from "react-icons/go";
+// import Pagination from "../../../components/pagination";
 import { Request } from "../../../helpers/Request";
 import { useEffect, useState } from "react";
-import { Book } from "../../../types";
+import { BookWithCategory } from "../../../types";
+import toast from "react-hot-toast";
 
 const BooksTable = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<BookWithCategory[]>([]);
   const [loading, setLoading] = useState(false);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetchBooks();
@@ -16,7 +17,7 @@ const BooksTable = () => {
   const fetchBooks = async () => {
     try {
       setLoading(true);
-      const { data } = await Request<Book[]>("/product", "GET");
+      const { data } = await Request<BookWithCategory[]>("/product", "GET");
       setBooks(data);
     } catch (error) {
       console.log(error);
@@ -24,9 +25,22 @@ const BooksTable = () => {
       setLoading(false);
     }
   };
+
+  const handleDelete = async (bookId: string) => {
+    try {
+      setLoading(true);
+      await Request(`/product/${bookId}`, "DELETE");
+      toast.success("Muvaffaqiyatli");
+      fetchBooks();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
-    <div>
-      <table className=" min-w-full rounded-xl">
+    <div className="overflow-x-auto max-w-[64rem]">
+      <table className=" min-w-max rounded-xl">
         <thead>
           <tr className="bg-gray-50">
             <th
@@ -117,7 +131,7 @@ const BooksTable = () => {
                 </p>
               </td>
               <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                {book.categoryId}
+                {book.category.name}
               </td>
               <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
                 {book.author}
@@ -127,10 +141,10 @@ const BooksTable = () => {
               </td>
               <td className=" p-5 ">
                 <div className="flex items-center gap-1">
-                  <button className="p-2 rounded-full  group transition-all duration-500  flex item-center hover:text-sky-600 hover:bg-gray-100">
-                    <GoPencil size={20} />
-                  </button>
-                  <button className="p-2 rounded-full  group transition-all duration-500  flex item-center hover:text-red-600 hover:bg-gray-100">
+                  <button
+                    onClick={() => handleDelete(book.id)}
+                    className="p-2 rounded-full  group transition-all duration-500  flex item-center hover:text-red-600 hover:bg-gray-100"
+                  >
                     <AiOutlineClose size={20} />
                   </button>
                 </div>
@@ -139,9 +153,13 @@ const BooksTable = () => {
           ))}
         </tbody>
       </table>
-      <div className="flex justify-end mt-2">
-        <Pagination currentPage={1} onPageChange={() => {}} totalPages={4} />
-      </div>
+      {/* <div className="flex justify-end mt-2">
+        <Pagination
+          currentPage={currentPage}
+          onPageChange={() => {}}
+          totalPages={4}
+        />
+      </div> */}
     </div>
   );
 };

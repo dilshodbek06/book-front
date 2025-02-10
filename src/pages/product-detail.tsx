@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { Request } from "../helpers/Request";
 import { BookWithCategory } from "../types";
+import DetailSkeleton from "../components/detail-skeleton";
 
 const ProductDetail = () => {
   const { addToCart } = useCartStore();
@@ -46,7 +47,7 @@ const ProductDetail = () => {
       <div className="container py-3 px-4 mx-auto max-w-xl min-h-[500px]">
         <Header name="Kitoblar" />
         {loading ? (
-          <p>Loading...</p>
+          <DetailSkeleton />
         ) : (
           <div className="mt-3 min-h-[500px] ">
             <div>

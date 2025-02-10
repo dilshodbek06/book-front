@@ -5,40 +5,24 @@ import { Link } from "react-router-dom";
 import { formatDate } from "../../../../helpers/date";
 import { formatUzbekPhoneNumber } from "../../../../helpers/phone";
 import { FaRegEye } from "react-icons/fa";
-import { CgArrowsExchangeAlt } from "react-icons/cg";
-import toast from "react-hot-toast";
-import ItemsModal from "./items-modal";
+import ItemsModal from "../new/items-modal";
 
 const DataTable = () => {
   const [orders, setOrders] = useState<OrdersType[]>([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
   const [currentOrder, setCurrentOrder] = useState<null | OrdersType>(null);
 
   useEffect(() => {
-    fetchNewOrders();
+    fetchCompletedOrders();
   }, []);
 
-  const fetchNewOrders = async () => {
+  const fetchCompletedOrders = async () => {
     try {
       setLoading(true);
-      const { data } = await Request<OrdersType[]>("/order/new", "GET");
+      const { data } = await Request<OrdersType[]>("/order/completed", "GET");
       setOrders(data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const changeOrderToCompleted = async (id: string) => {
-    try {
-      setLoading(true);
-      await Request("/order/completed", "POST", {
-        orderId: id,
-      });
-      fetchNewOrders();
-      toast.success("Muvaffaqiyatli o'zgartirildi");
     } catch (error) {
       console.log(error);
     } finally {
@@ -148,8 +132,8 @@ const DataTable = () => {
                 </Link>
               </td>
               <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
-                <div className="p-1 rounded-md flex justify-center items-center text-white bg-green-500 hover:bg-green-600 text-xs">
-                  NEW
+                <div className="p-1 rounded-md flex justify-center items-center text-white bg-blue-500 hover:bg-blue-600 text-xs">
+                  COMPLETED
                 </div>
               </td>
               <td className="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">
@@ -163,14 +147,6 @@ const DataTable = () => {
                     className="p-2 rounded-full  group transition-all duration-500  flex item-center hover:text-sky-600 hover:bg-gray-100"
                   >
                     <FaRegEye size={20} />
-                  </button>
-                  <button
-                    disabled={loading}
-                    onClick={() => changeOrderToCompleted(order.id)}
-                    title="completedga o'tkazish"
-                    className="p-2 rounded-full  group transition-all duration-500  flex item-center hover:text-green-600 hover:bg-gray-100 disabled:pointer-events-none disabled:cursor-not-allowed"
-                  >
-                    <CgArrowsExchangeAlt size={20} />
                   </button>
                 </div>
               </td>

@@ -1,13 +1,13 @@
-import { FaUsers } from "react-icons/fa";
-import { GrCompliance, GrInProgress } from "react-icons/gr";
-import { ImCancelCircle } from "react-icons/im";
+// import { FaUsers } from "react-icons/fa";
+import { GrCompliance } from "react-icons/gr";
+// import { ImCancelCircle } from "react-icons/im";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import Logo from "./logo";
 import { GiBookshelf } from "react-icons/gi";
 
 const sidebarLinks = [
-  { to: "/admin/users", icon: <FaUsers className="size-6" />, label: "Users" },
+  // { to: "/admin/users", icon: <FaUsers className="size-6" />, label: "Users" },
   {
     to: "/admin/books",
     icon: <GiBookshelf className="size-6" />,
@@ -18,21 +18,21 @@ const sidebarLinks = [
     icon: <MdOutlineCreateNewFolder className="size-6" />,
     label: "New Orders",
   },
-  {
-    to: "/admin/orders-inprogress",
-    icon: <GrInProgress className="size-6" />,
-    label: "Inprogress Orders",
-  },
+  // {
+  //   to: "/admin/orders-inprogress",
+  //   icon: <GrInProgress className="size-6" />,
+  //   label: "Inprogress Orders",
+  // },
   {
     to: "/admin/orders-completed",
     icon: <GrCompliance className="size-6" />,
     label: "Completed Orders",
   },
-  {
-    to: "/admin/orders-canceled",
-    icon: <ImCancelCircle className="size-6" />,
-    label: "Canceled Orders",
-  },
+  // {
+  //   to: "/admin/orders-canceled",
+  //   icon: <ImCancelCircle className="size-6" />,
+  //   label: "Canceled Orders",
+  // },
 ];
 
 // const adminRoutes = [

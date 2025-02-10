@@ -28,7 +28,7 @@ const Cart = () => {
         </div>
       </div>
       {cart.length > 0 && (
-        <div className="h-[80px] fixed bottom-0 bg-white shadow-[0px_-11px_14px_-9px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] rounded-t-3xl px-4 pt-4 pb-2 w-full">
+        <div className="h-[80px] fixed bottom-0 bg-white shadow-[0px_-11px_14px_-9px_rgba(0,0,0,0.1),0px_8px_10px_-6px_rgba(0,0,0,0.1)] rounded-t-3xl px-4 pt-4 pb-4 w-full">
           <div className="container  mx-auto max-w-xl flex justify-between items-center">
             <div>
               <p className="text-gray-600">{cart?.length ?? 0} xil kitob</p>

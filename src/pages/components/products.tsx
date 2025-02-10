@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "./product";
 import { Book } from "../../types";
 import { Request } from "../../helpers/Request";
+import ProductSkeleton from "../../components/product-skeleton";
 
 const Products = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -24,7 +25,7 @@ const Products = () => {
   };
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-      {loading && <p>Loading...</p>}
+      {loading && [1, 1, 1, 1].map((_, ind) => <ProductSkeleton key={ind} />)}
       {books.map((book, ind) => (
         <Product key={ind} book={book} />
       ))}
