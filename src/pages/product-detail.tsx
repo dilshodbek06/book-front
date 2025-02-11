@@ -54,7 +54,7 @@ const ProductDetail = () => {
               <img
                 src={`https://book-backend-git-main-dilshodbek06s-projects.vercel.app/${currentProduct?.imageUrl}`}
                 alt={currentProduct?.name}
-                className="mx-auto"
+                className="mx-auto w-[200px]"
               />
               <h4 className="font-semibold text-xl mt-3 text-center">
                 {currentProduct?.name}
